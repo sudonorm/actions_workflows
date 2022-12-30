@@ -15,6 +15,7 @@ jobs:
         id: check-folder-permission
         #run: git update-index --chmod=+x entrypoint.sh
         run: ls -l
+        
       - uses: sudonorm/format-with-black@v1
         with:
           src: "."
