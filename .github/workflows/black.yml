@@ -13,7 +13,8 @@ jobs:
       #    options: "--check --verbose"
       - name: Elevate entrypoint permissions
         id: elevate-perm
-        run: git update-index --chmod=+x entrypoint.sh
+        #run: git update-index --chmod=+x entrypoint.sh
+        run: ls -l
       - uses: sudonorm/format-with-black@v1
         with:
           src: "."
