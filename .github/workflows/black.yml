@@ -10,7 +10,7 @@ jobs:
       #- uses: psf/black@stable
       #  with:
       #    options: "--check --verbose"
-      - uses: sudonorm/format-with-black
+      - uses: sudonorm/format-with-black@v1
         with:
           src: "."
       - name: Check for modified files
