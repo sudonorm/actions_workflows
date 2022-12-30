@@ -11,6 +11,9 @@ jobs:
       #- uses: psf/black@stable
       #  with:
       #    options: "--check --verbose"
+      - name: Elevate entrypoint permissions
+        id: elevate-perm
+        run: chmod 700 entrypoint.sh
       - uses: sudonorm/format-with-black@v1
         with:
           src: "."
