@@ -1,6 +1,6 @@
-name: Lint
+name: Format
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   
@@ -8,14 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      #- uses: psf/black@stable
-      #  with:
-      #    options: "--check --verbose"
-      - name: Check permissions
-        id: check-folder-permission
-        #run: git update-index --chmod=+x entrypoint.sh
-        run: ls -l
-
       - uses: sudonorm/format-with-black@v1.1
         with:
           src: "."
@@ -26,3 +18,8 @@ jobs:
         if: steps.git-check.outputs.modified == 'true'
         run: |
           echo "changes made"
+          git config --global user.name ${{ github.actor }}
+          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.ACC_TKN }}@github.com/${{ github.repository }}
+          git commit -am "Automated black fixes"
+          git push
